@@ -80,7 +80,7 @@ const ImageSlider = ({projects}) => {
               <div style={{width: '100%', height: '100%', background: 'pink'}} key={project.id} className="slide">
                 <img
                   style={{ objectFit: 'cover',  height: '300px', width: 'auto', objectFit: 'cover', margin: "4rem auto 0px auto" }}
-                  src={project.image}
+                  src={project.imageSrc}
                   alt={project.title}
                 />
               </div>
@@ -96,7 +96,7 @@ const ImageSlider = ({projects}) => {
                 className={index === currentSlide ? "dot active" : "dot"}
                 onClick={() => handleSlideClick(index)}
               >
-                <img src={img.image} alt={img.title} />
+                <img src={project.imageSrc} alt={project.title} />
               </div>
             ))}
           </div>
