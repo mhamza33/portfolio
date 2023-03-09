@@ -2,12 +2,17 @@ import React, { useState, useRef } from "react";
 import Slider from "react-slick";
 import Modal from "react-modal";
 
-const ImageSlider = () => {
+const ImageSlider = ({projects}) => {
   const sliderRef = useRef();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(3);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [slidesToScroll, setSlidesToScroll] = useState(1);
+
+
+ console.log("project", projects)
+
+
 
   const images = [
     {
@@ -15,40 +20,30 @@ const ImageSlider = () => {
       image:
         "https://img.freepik.com/free-vector/moon-rover-flat-composition-with-view-planetary-surface-with-lunar-roving-vehicle-astronaut-character-illustration_1284-61094.jpg",
       title: "Lorem Ipsum Dolor Sit Amet",
-      desc:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     },
     {
       id: 2,
       image:
-        "https://i.graphicmama.com/blog/wp-content/uploads/2018/06/18061810/Children-Book-Illustration-man-woman-and-dog.jpg",
+        "https://media.istockphoto.com/id/1128067362/vector/space-rocket-flies-over-the-surface-of-the-planet-like-a-moon.jpg?s=612x612&w=0&k=20&c=Bi9NiISox5P458um1kdSBB2CsY4-F1iCNSi1ta74V-4=",
       title: "Sed Do Eiusmod Tempor",
-      desc:
-        "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     },
     {
       id: 3,
       image:
-        "https://www.amandahall-illustration.com/wp-content/uploads/2020/10/BIOGRAPHY-HERO-IMAGE.jpg",
+        "https://media.istockphoto.com/id/1419044643/vector/artemis-1-rocket-on-its-way-to-the-moon.jpg?s=612x612&w=0&k=20&c=3JRllUj0hc-7S_zkQ-XDXA6uCb99LD8rk-1v6Kc7yPQ=",
       title: "Consectetur Adipiscing Elit",
-      desc:
-        "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     },
     {
       id: 4,
       image:
         "https://blog-cdn.reedsy.com/directories/admin/featured_image/417/large_how-to-become-a-childrens-book-illustrator-7396c5.jpg",
       title: "Tempor Incididunt",
-      desc:
-        "Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     },
     {
       id: 5,
       image:
         "https://www.vectornator.io/blog/content/images/2022/03/611b8c046cc4036b1b6fc8e2_Cover-Children-Book--1-.png",
       title: "Ut Labore Et Dolore Magna Aliqua",
-      desc:
-        "Ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     }
   ];
 
@@ -71,10 +66,6 @@ const ImageSlider = () => {
 
   return (
     <>
-
-      {/* <button onClick={() => setModalIsOpen(true)}>Open Slider Modal</button> */}
-      {/* <OpenSlider setModalIsOpen={setModalIsOpen} /> */}
-      {/* <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}> */}
         <div
           style={{
             height: "80vh",
@@ -85,12 +76,12 @@ const ImageSlider = () => {
           className="slider-container"
         >
           <Slider {...settings} ref={sliderRef}>
-            {images.map((img) => (
-              <div  key={img.id} className="slide">
+            {projects.map((project) => (
+              <div style={{width: '100%', height: '100%', background: 'pink'}} key={project.id} className="slide">
                 <img
-                  style={{ height: "35vh", margin: "4rem auto 0px auto" }}
-                  src={img.image}
-                  alt={img.title}
+                  style={{ objectFit: 'cover',  height: '300px', width: 'auto', objectFit: 'cover', margin: "4rem auto 0px auto" }}
+                  src={project.image}
+                  alt={project.title}
                 />
               </div>
             ))}
@@ -99,9 +90,9 @@ const ImageSlider = () => {
             style={{ display: "flex", justifyContent: "center" }}
             className="dots"
           >
-            {images.map((img, index) => (
+            {projects.map((project, index) => (
               <div
-                key={img.id}
+                key={project.id}
                 className={index === currentSlide ? "dot active" : "dot"}
                 onClick={() => handleSlideClick(index)}
               >
@@ -110,7 +101,6 @@ const ImageSlider = () => {
             ))}
           </div>
         </div>
-      {/* </Modal> */}
     </>
   );
 };

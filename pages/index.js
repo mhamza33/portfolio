@@ -12,6 +12,7 @@ import Link from "next/link";
 import Cursor from "../components/Cursor";
 import Modal from "react-modal";
 import ImagePopup from "../components/ImagePopup";
+import { FaTimes } from "react-icons/fa";
 
 // Local Data
 import data from "../data/portfolio.json";
@@ -103,20 +104,25 @@ export default function Home() {
         <div className="mt-10 laptop:mt-30 p-2 laptop:p-0" ref={workRef}>
           <h1 className="text-2xl text-bold">Work.</h1>
 
-          {/* <button onClick={() => setModalIsOpen(true)}>
-            Open SLiderererere
-          </button> */}
-
+          {/* Image Modal */}
           <Modal
             isOpen={modalIsOpen}
             onRequestClose={() => setModalIsOpen(false)}
           >
-            <ImagePopup />
-            {/* <h1>asdasdasd</h1> */}
+            <div style={{ position: "relative", width: '100%', height: '50px' }}>
+              <button
+                style={{ position: "absolute", right: "25%", bottom: '0px'  }}
+                onClick={() => setModalIsOpen(false)}
+              >
+                <FaTimes />
+              </button>
+            </div>
+            {
+                <ImagePopup projects={data.projects} />
+            }
           </Modal>
-          {/* <div style={{width: '800px', height: '1200px', background: 'pink'}} >
-            <ImagePopup />
-          </div> */}
+
+          {console.log("Work Card All Data ===> ", data)}
 
           <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
             {data.projects.map((project) => (
